@@ -4,6 +4,8 @@ Written by Phil (dutsonpa) / ICON Health & Fitness
 Version 1.131105
 
 https://github.com/dutsonpa/pixity
+<img class="pixity" src="images/placeholder.gif" alt="Pixity test" data-path="images" data-sm="small.jpg" data-md="medium.jpg" data-lg="large.jpg" data-xl="xlarge.jpg" data-webp="true" />
+
 **/
 
 ;(function($){
@@ -17,31 +19,46 @@ https://github.com/dutsonpa/pixity
 			},
 			options
 		);
+        
 		var domNode = $('.'+settings.imgClass);
 		var cw = document.documentElement.clientWidth;
+        //console.log(domNode.data('webp'));
+        if (domNode.data('webp') ) {
+            
+            settings = $.extend(
+			{
+				webp: true
+			},
+			settings
+		);
+        //console.log(domNode.data('webp'));
+            //console.log(settings.webp);
+            
+        }
 
 		var imgSm = function() {
 			domNode.each(function() {
 				var $this = $(this);
-				$this.attr('src',$this.data('path') +'/'+$this.data('sm'));
+                //console.log(settings.webp);
+                settings.webp ? $this.attr('src',$this.data('path') +'/'+$this.data('sm').split('.')[0] + '.webp') : $this.attr('src',$this.data('path') +'/'+$this.data('sm'));
 			});
 		};
 		var imgMd = function() {
 			domNode.each(function() {
 				var $this = $(this);
-				$this.attr('src',$this.data('path') +'/'+$this.data('md'));
+				settings.webp ? $this.attr('src',$this.data('path') +'/'+$this.data('md').split('.')[0] + '.webp') : $this.attr('src',$this.data('path') +'/'+$this.data('md'));
 			});
 		};
 		var imgLg = function() {
 			domNode.each(function() {
 				var $this = $(this);
-				$this.attr('src',$this.data('path') +'/'+$this.data('lg'));
+				settings.webp ? $this.attr('src',$this.data('path') +'/'+$this.data('lg').split('.')[0] + '.webp') : $this.attr('src',$this.data('path') +'/'+$this.data('lg'));
 			});
 		};
         var imgXl = function() {
 			domNode.each(function() {
 				var $this = $(this);
-				$this.attr('src',$this.data('path') +'/'+$this.data('xl'));
+				settings.webp ? $this.attr('src',$this.data('path') +'/'+$this.data('xl').split('.')[0] + '.webp') : $this.attr('src',$this.data('path') +'/'+$this.data('xl'));
 			});
 		};
 
